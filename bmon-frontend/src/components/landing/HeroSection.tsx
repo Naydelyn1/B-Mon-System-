@@ -9,7 +9,6 @@ async function fetchStats(): Promise<StatsPublicos | null> {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/dashboard/stats-publicos`,
-      { next: { revalidate: 120 } },
     );
     if (!res.ok) return null;
     return res.json();
