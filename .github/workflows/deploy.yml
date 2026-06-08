@@ -17,14 +17,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: bmon-frontend/package-lock.json
 
       - name: Install dependencies
         working-directory: bmon-frontend
-        run: npm ci
+        run: npm install --legacy-peer-deps
 
-      - name: Disable middleware (incompatible with static export)
+      - name: Disable middleware (not supported with static export)
         working-directory: bmon-frontend/src
         run: mv middleware.ts middleware.ts.disabled
 
@@ -34,9 +32,9 @@ jobs:
         env:
           NEXT_PUBLIC_EXPORT: 'true'
           NEXT_PUBLIC_BASE_PATH: /B-Mon-System-
-          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api' }}
+          NEXT_PUBLIC_API_URL: 'http://localhost:3001/api'
 
-      - name: Add .nojekyll (required for Next.js on GitHub Pages)
+      - name: Add .nojekyll
         run: touch bmon-frontend/out/.nojekyll
 
       - name: Deploy to GitHub Pages
