@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server';
 const publicPaths = ['/', '/login'];
 
 export function middleware(request: NextRequest) {
-  const token = request.cookies.get('bmon_token')?.value;
+  const token = request.cookies.get('montufar_token')?.value;
   const { pathname } = request.nextUrl;
 
   if (!publicPaths.includes(pathname) && !token) {

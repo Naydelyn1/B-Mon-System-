@@ -11,14 +11,14 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="mb-4">
-              <p className="text-white font-bold text-lg leading-tight">B-Mon System</p>
+              <p className="text-white font-bold text-lg leading-tight">Montufar Sys</p>
               <p className="text-orange text-xs">Development</p>
             </div>
             <p className="text-sm leading-relaxed max-w-xs">
               Desarrollamos soluciones digitales a medida para empresas que quieren crecer.
               Equipo peruano, alcance global.
             </p>
-            <p className="text-xs mt-6">b-mondev@gmail.com</p>
+            <p className="text-xs mt-6">naymontu@gmail.com</p>
           </div>
 
           {/* Links */}
@@ -39,7 +39,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs">© {new Date().getFullYear()} B-Mon System Development. Todos los derechos reservados.</p>
+          <p className="text-xs">© {new Date().getFullYear()} Montufar Systems. Todos los derechos reservados.</p>
           <p className="text-xs">Hecho con ♥ en Perú</p>
         </div>
       </div>

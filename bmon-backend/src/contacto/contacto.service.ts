@@ -23,7 +23,7 @@ export class ContactoService {
 
     try {
       await transporter.sendMail({
-        from: `"B-Mon System" <${user}>`,
+        from: `"Montufar Systems" <${user}>`,
         to: this.configService.get<string>('MAIL_TO') ?? user,
         replyTo: dto.email,
         subject: `[Contacto Web] ${dto.asunto}`,
@@ -38,7 +38,7 @@ export class ContactoService {
             <div style="background:#f5ead8;border-radius:8px;padding:16px;margin-top:16px">
               <p style="margin:0;color:#1a2035">${dto.mensaje.replace(/\n/g, '<br>')}</p>
             </div>
-            <p style="color:#999;font-size:12px;margin-top:24px">Enviado desde bmondev.com</p>
+            <p style="color:#999;font-size:12px;margin-top:24px">Enviado desde el formulario web de Montufar Systems</p>
           </div>
         `,
       });

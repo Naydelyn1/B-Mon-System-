@@ -93,7 +93,7 @@ export async function HeroSection() {
           <div className="animate-float w-full max-w-sm bg-navy2 rounded-2xl shadow-2xl border border-white/10 overflow-hidden">
             {/* Header */}
             <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between">
-              <span className="text-white text-sm font-semibold">B-Mon Dashboard</span>
+              <span className="text-white text-sm font-semibold">Montufar Sys Dashboard</span>
               <div className="flex gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
                 <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />

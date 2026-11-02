@@ -20,13 +20,13 @@ export class MailService {
   async sendExpirationWarning(to: string, nombre: string, producto: string, fechaVencimiento: string, diasRestantes: number): Promise<void> {
     try {
       await this.transporter.sendMail({
-        from: `"B-MON System" <${this.config.get('MAIL_USER')}>`,
+        from: `"Montufar Systems" <${this.config.get('MAIL_USER')}>`,
         to,
         subject: `Tu suscripción a ${producto} vence en ${diasRestantes} días`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1a2236;">
             <div style="background: #f97316; padding: 28px 32px; border-radius: 12px 12px 0 0;">
-              <h1 style="margin: 0; color: #fff; font-size: 22px; letter-spacing: 1px;">B-MON System</h1>
+              <h1 style="margin: 0; color: #fff; font-size: 22px; letter-spacing: 1px;">Montufar Sys</h1>
             </div>
             <div style="background: #fff; padding: 32px; border: 1px solid #f0ece6; border-top: none; border-radius: 0 0 12px 12px;">
               <h2 style="margin-top: 0; font-size: 20px;">¡Hola, ${nombre}!</h2>
@@ -69,13 +69,13 @@ export class MailService {
     const cuotaInfo = cuotaNumero && cuotaTotal ? ` (Cuota ${cuotaNumero}/${cuotaTotal})` : '';
     try {
       await this.transporter.sendMail({
-        from: `"B-MON System" <${this.config.get('MAIL_USER')}>`,
+        from: `"Montufar Systems" <${this.config.get('MAIL_USER')}>`,
         to,
         subject: `Recordatorio de pago${cuotaInfo}: ${concepto}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1a2236;">
             <div style="background: #f97316; padding: 28px 32px; border-radius: 12px 12px 0 0;">
-              <h1 style="margin: 0; color: #fff; font-size: 22px; letter-spacing: 1px;">B-MON System</h1>
+              <h1 style="margin: 0; color: #fff; font-size: 22px; letter-spacing: 1px;">Montufar Sys</h1>
             </div>
             <div style="background: #fff; padding: 32px; border: 1px solid #f0ece6; border-top: none; border-radius: 0 0 12px 12px;">
               <h2 style="margin-top: 0; font-size: 20px;">¡Hola, ${nombre}!</h2>
@@ -107,18 +107,18 @@ export class MailService {
   async sendWelcome(to: string, nombre: string): Promise<void> {
     try {
       await this.transporter.sendMail({
-        from: `"B-MON System" <${this.config.get('MAIL_USER')}>`,
+        from: `"Montufar Systems" <${this.config.get('MAIL_USER')}>`,
         to,
-        subject: '¡Bienvenido a B-MON System!',
+        subject: '¡Bienvenido a Montufar Systems!',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1a2236;">
             <div style="background: #f97316; padding: 28px 32px; border-radius: 12px 12px 0 0;">
-              <h1 style="margin: 0; color: #fff; font-size: 22px; letter-spacing: 1px;">B-MON System</h1>
+              <h1 style="margin: 0; color: #fff; font-size: 22px; letter-spacing: 1px;">Montufar Sys</h1>
             </div>
             <div style="background: #fff; padding: 32px; border: 1px solid #f0ece6; border-top: none; border-radius: 0 0 12px 12px;">
               <h2 style="margin-top: 0; font-size: 20px;">¡Hola, ${nombre}!</h2>
               <p style="line-height: 1.6; color: #444;">
-                Te damos la bienvenida a <strong>B-MON System</strong>. Tu registro ha sido completado exitosamente.
+                Te damos la bienvenida a <strong>Montufar Systems</strong>. Tu registro ha sido completado exitosamente.
               </p>
               <p style="line-height: 1.6; color: #444;">
                 A partir de ahora podrás acceder a todos los servicios contratados. Si tienes alguna consulta o necesitas soporte, no dudes en contactarnos.

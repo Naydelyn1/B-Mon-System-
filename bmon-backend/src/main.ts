@@ -17,7 +17,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
   const config = new DocumentBuilder()
-    .setTitle('B-Mon System API')
+    .setTitle('Montufar Systems API')
     .setDescription('API REST para gestión de sistemas SaaS')
     .setVersion('1.0')
     .addBearerAuth()

@@ -50,7 +50,7 @@ const FAQS: FAQ[] = [
 const WELCOME: Message = {
   id: 0,
   from: 'bot',
-  text: '¡Hola! 👋 Soy el asistente de B-MON System. ¿En qué puedo ayudarte hoy? Elige una pregunta o escríbeme directamente.',
+  text: '¡Hola! 👋 Soy el asistente de Montufar Systems. ¿En qué puedo ayudarte hoy? Elige una pregunta o escríbeme directamente.',
 };
 
 let nextId = 1;
@@ -114,7 +114,7 @@ export function ChatBot() {
               <Bot size={16} className="text-white" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white text-sm font-semibold">B-MON Asistente</p>
+              <p className="text-white text-sm font-semibold">Montufar Sys Asistente</p>
               <p className="text-white/50 text-xs">Respuesta inmediata</p>
             </div>
             <button

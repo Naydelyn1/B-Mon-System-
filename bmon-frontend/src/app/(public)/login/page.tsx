@@ -47,14 +47,14 @@ export default function LoginPage() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="text-center mb-8">
-          <h1 className="font-serif text-3xl text-navy">B-Mon System</h1>
+          <h1 className="font-serif text-3xl text-navy">Montufar Sys</h1>
           <p className="text-orange text-sm font-medium mt-1">Development</p>
         </div>
 
         {/* Card */}
         <div className="bg-white rounded-2xl shadow-lg border border-cream2 p-8">
           <h2 className="text-navy font-semibold text-xl mb-1">Acceder al panel</h2>
-          <p className="text-navy/40 text-sm mb-7">Solo para el equipo B-Mon</p>
+          <p className="text-navy/40 text-sm mb-7">Solo para el equipo Montufar Sys</p>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {/* Email */}

@@ -18,8 +18,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'B-Mon System',
-  description: 'Panel de gestión B-Mon Development',
+  title: 'Montufar Systems',
+  description: 'Panel de gestión Montufar Systems',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

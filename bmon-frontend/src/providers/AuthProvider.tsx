@@ -32,19 +32,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const { data } = await api.get<{ sub: string; nombre: string; email: string; rol: string }>('/auth/me');
       return { id: data.sub, nombre: data.nombre, email: data.email, rol: data.rol } as User;
     },
-    enabled: !!Cookies.get('bmon_token'),
+    enabled: !!Cookies.get('montufar_token'),
     retry: false,
   });
 
   const login = async (email: string, password: string) => {
     const { data } = await api.post<{ access_token: string }>('/auth/login', { email, password });
-    Cookies.set('bmon_token', data.access_token, { expires: 7 });
+    Cookies.set('montufar_token', data.access_token, { expires: 7 });
     await queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
     router.push('/dashboard');
   };
 
   const logout = () => {
-    Cookies.remove('bmon_token');
+    Cookies.remove('montufar_token');
     queryClient.clear();
     router.push('/login');
   };

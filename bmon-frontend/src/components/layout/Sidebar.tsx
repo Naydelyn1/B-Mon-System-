@@ -21,7 +21,7 @@ export function Sidebar() {
     <aside className="w-[220px] min-h-screen bg-navy flex flex-col flex-shrink-0">
       {/* Logo */}
       <div className="px-5 py-5 border-b border-white/10">
-        <p className="text-white font-bold text-base leading-tight">B-Mon System</p>
+        <p className="text-white font-bold text-base leading-tight">Montufar Sys</p>
         <p className="text-orange text-xs">Development</p>
       </div>
 

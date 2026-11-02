@@ -18,7 +18,6 @@ const valores = [
 ];
 
 const equipo = [
-  { iniciales: 'JB', nombre: 'Jaime Bravo', rol: 'Systems Engineer', bg: 'bg-navy', text: 'text-white' },
   { iniciales: 'NM', nombre: 'Naydelyn Montufar', rol: 'Systems Engineer', bg: 'bg-orange', text: 'text-white' },
 ];
 
@@ -30,7 +29,7 @@ export function NosotrosSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="text-center mb-16">
           <span className="text-orange text-sm font-semibold uppercase tracking-wider">Quiénes somos</span>
-          <h2 className="font-serif text-4xl text-navy mt-2">El equipo detrás de B-Mon</h2>
+          <h2 className="font-serif text-4xl text-navy mt-2">El equipo detrás de Montufar Systems</h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 items-start">

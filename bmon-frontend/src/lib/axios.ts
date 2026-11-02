@@ -6,7 +6,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const token = Cookies.get('bmon_token');
+  const token = Cookies.get('montufar_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -17,7 +17,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401 && typeof window !== 'undefined') {
-      Cookies.remove('bmon_token');
+      Cookies.remove('montufar_token');
       window.location.href = '/login';
     }
     return Promise.reject(error);

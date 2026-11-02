@@ -40,7 +40,7 @@ export function Navbar() {
       <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
         {/* Logo */}
         <div className="flex flex-col leading-tight">
-          <span className="text-white font-bold text-lg tracking-wide">B-Mon System</span>
+          <span className="text-white font-bold text-lg tracking-wide">Montufar Sys</span>
           <span className="text-orange text-xs font-medium">Development</span>
         </div>
 
