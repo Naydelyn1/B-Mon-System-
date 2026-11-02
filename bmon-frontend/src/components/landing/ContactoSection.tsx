@@ -88,7 +88,7 @@ export function ContactoSection() {
           {/* Info */}
           <div className="flex flex-col justify-center gap-8">
             {[
-              { icon: Mail, label: 'Email', value: 'naymontu35@gmail.com' },
+              { icon: Mail, label: 'Email', value: 'naymontu@gmail.com' },
               { icon: Users, label: 'Equipo', value: 'Naydelyn Montufar' },
               { icon: MapPin, label: 'Ubicación', value: 'Perú — trabajo remoto' },
             ].map(({ icon: Icon, label, value }) => (
