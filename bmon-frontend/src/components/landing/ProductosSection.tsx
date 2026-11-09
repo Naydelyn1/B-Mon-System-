@@ -78,7 +78,7 @@ export function ProductosSection() {
                 )}
 
                 {/* Header */}
-                <div className={`p-7 pt-10 rounded-t-2xl ${plan.destacado ? 'bg-orange' : 'bg-navy'}`}>
+                <div className={`p-7 pt-10 rounded-t-2xl ${plan.destacado ? 'bg-orange-ink' : 'bg-navy'}`}>
                   <span className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center">
                     <plan.icon size={22} className="text-white" />
                   </span>
@@ -102,7 +102,7 @@ export function ProductosSection() {
                     href="#contacto"
                     className={`mt-7 flex items-center justify-center min-h-[44px] px-5 rounded-xl text-sm font-semibold transition-colors ${
                       plan.destacado
-                        ? 'bg-orange hover:bg-orange2 text-white'
+                        ? 'bg-orange-ink hover:bg-orange-ink2 text-white'
                         : 'border-2 border-navy text-navy hover:bg-navy hover:text-white'
                     }`}
                   >
@@ -122,7 +122,7 @@ export function ProductosSection() {
           </p>
           <a
             href="#contacto"
-            className="inline-block bg-orange hover:bg-orange2 text-white font-semibold px-8 py-3 rounded-xl transition-colors text-sm"
+            className="inline-block bg-orange-ink hover:bg-orange-ink2 text-white font-semibold px-8 py-3 rounded-xl transition-colors text-sm"
           >
             Hablar con el equipo
           </a>

@@ -100,7 +100,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 bg-orange hover:bg-orange2 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+              className="w-full py-3 bg-orange-ink hover:bg-orange-ink2 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
             >
               {isSubmitting && (
                 <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

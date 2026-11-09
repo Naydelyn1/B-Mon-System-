@@ -15,7 +15,7 @@ export function Topbar({ title }: TopbarProps) {
       {user && (
         <div className="flex items-center gap-3">
           <span className="text-sm text-gray-500">Hola, <span className="text-navy font-medium">{user.nombre}</span></span>
-          <div className="w-8 h-8 rounded-full bg-orange flex items-center justify-center text-white text-xs font-bold">
+          <div className="w-8 h-8 rounded-full bg-orange-ink flex items-center justify-center text-white text-xs font-bold">
             {user.nombre?.slice(0, 2).toUpperCase() ?? '??'}
           </div>
         </div>

@@ -99,7 +99,7 @@ export function Navbar() {
             <a
               href="#contacto"
               aria-current={activeSection === 'contacto' ? 'true' : undefined}
-              className={`ml-2 inline-flex items-center min-h-[44px] px-5 bg-orange hover:bg-orange2 text-white text-sm font-semibold rounded-lg transition-colors ${
+              className={`ml-2 inline-flex items-center min-h-[44px] px-5 bg-orange-ink hover:bg-orange-ink2 text-white text-sm font-semibold rounded-lg transition-colors ${
                 activeSection === 'contacto' ? 'ring-2 ring-white/70 ring-offset-2 ring-offset-navy' : ''
               }`}
             >

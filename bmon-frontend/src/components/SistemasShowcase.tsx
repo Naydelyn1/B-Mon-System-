@@ -250,7 +250,7 @@ function MedidaMock() {
               animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
               transition={{ type: 'spring', stiffness: 220, damping: 20, delay: 0.1 + i * 0.06 }}
               className={`aspect-square rounded-xl flex flex-col items-center justify-center gap-1.5 text-center ${
-                centro ? 'bg-orange text-white shadow-lg' : 'bg-cream border border-cream2 text-navy'
+                centro ? 'bg-orange-ink text-white shadow-lg' : 'bg-cream border border-cream2 text-navy'
               }`}
             >
               <Icon size={18} className={centro ? 'text-white' : 'text-navy/70'} />
@@ -422,7 +422,7 @@ export function SistemasShowcase() {
                     {sistema.cta && (
                       <a
                         href={sistema.cta.href}
-                        className="mt-5 inline-flex items-center gap-2 min-h-[44px] px-6 bg-orange hover:bg-orange2 text-white text-sm font-semibold rounded-xl transition-colors"
+                        className="mt-5 inline-flex items-center gap-2 min-h-[44px] px-6 bg-orange-ink hover:bg-orange-ink2 text-white text-sm font-semibold rounded-xl transition-colors"
                       >
                         {sistema.cta.label}
                         <ArrowRight size={16} />

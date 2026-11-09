@@ -52,7 +52,7 @@ export function Sidebar() {
       <div className="px-4 py-4 border-t border-white/10">
         {user && (
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 rounded-full bg-orange flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+            <div className="w-8 h-8 rounded-full bg-orange-ink flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
               {user.nombre?.slice(0, 2).toUpperCase() ?? '??'}
             </div>
             <div className="overflow-hidden">

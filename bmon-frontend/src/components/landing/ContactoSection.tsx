@@ -81,7 +81,7 @@ export function ContactoSection() {
                   className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/40 outline-none focus:border-orange transition-colors resize-none" />
               </div>
               <button type="submit" disabled={sending}
-                className="w-full py-3 bg-orange hover:bg-orange2 disabled:opacity-60 text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
+                className="w-full py-3 bg-orange-ink hover:bg-orange-ink2 disabled:opacity-60 text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
                 {sending && <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
                 {sending ? 'Enviando...' : 'Enviar mensaje'}
               </button>

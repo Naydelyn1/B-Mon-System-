@@ -82,7 +82,7 @@ export function HeroSection() {
           <motion.div variants={item} className="flex flex-wrap gap-4">
             <a
               href="#contacto"
-              className="px-6 py-3 bg-orange hover:bg-orange2 text-white font-semibold rounded-xl transition-colors"
+              className="px-6 py-3 bg-orange-ink hover:bg-orange-ink2 text-white font-semibold rounded-xl transition-colors"
             >
               Comenzar proyecto
             </a>

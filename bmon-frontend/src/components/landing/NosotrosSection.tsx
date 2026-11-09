@@ -19,7 +19,7 @@ const valores = [
 ];
 
 const equipo = [
-  { iniciales: 'NM', nombre: 'Naydelyn Montufar', rol: 'Systems Engineer', bg: 'bg-orange', text: 'text-white' },
+  { iniciales: 'NM', nombre: 'Naydelyn Montufar', rol: 'Systems Engineer', bg: 'bg-orange-ink', text: 'text-white' },
 ];
 
 export function NosotrosSection() {

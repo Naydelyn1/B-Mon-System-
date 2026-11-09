@@ -140,7 +140,7 @@ export function ChatBot() {
                 <div
                   className={`max-w-[75%] px-3 py-2 rounded-2xl text-sm leading-relaxed ${
                     msg.from === 'user'
-                      ? 'bg-orange text-white rounded-br-sm'
+                      ? 'bg-orange-ink text-white rounded-br-sm'
                       : 'bg-white text-navy shadow-sm border border-cream2 rounded-bl-sm'
                   }`}
                 >
@@ -156,7 +156,7 @@ export function ChatBot() {
                   <button
                     key={faq.question}
                     onClick={() => handleFaq(faq)}
-                    className="text-left text-xs px-3 py-2 rounded-xl border border-orange/30 text-orange-ink hover:bg-orange hover:text-white transition-colors bg-white shadow-sm"
+                    className="text-left text-xs px-3 py-2 rounded-xl border border-orange/30 text-orange-ink hover:bg-orange-ink hover:text-white transition-colors bg-white shadow-sm"
                   >
                     {faq.question}
                   </button>
