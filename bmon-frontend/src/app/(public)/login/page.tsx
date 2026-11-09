@@ -1,12 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Eye, EyeOff } from 'lucide-react';
 import { toast } from 'sonner';
 import { useAuth } from '@/providers/AuthProvider';
+import { apiErrorMessage } from '@/lib/axios';
+import AuthShell, { inputClass, SubmitButton } from '@/components/auth/AuthShell';
+import PasswordInput from '@/components/auth/PasswordInput';
 
 const schema = z.object({
   email: z.string().email('Email inválido'),
@@ -17,7 +19,6 @@ type FormData = z.infer<typeof schema>;
 
 export default function LoginPage() {
   const { login } = useAuth();
-  const [showPass, setShowPass] = useState(false);
 
   const {
     register,
@@ -29,87 +30,52 @@ export default function LoginPage() {
     try {
       await login(data.email, data.password);
     } catch (err: unknown) {
-      const msg =
-        (err as { response?: { data?: { message?: string } } })?.response?.data?.message
-        ?? 'Credenciales incorrectas';
-      toast.error(msg);
+      toast.error(apiErrorMessage(err, 'Credenciales incorrectas'));
     }
   };
 
   return (
-    <div
-      className="min-h-screen bg-cream flex items-center justify-center p-4"
-      style={{
-        backgroundImage: 'radial-gradient(circle, rgba(26,32,53,0.06) 1px, transparent 1px)',
-        backgroundSize: '24px 24px',
-      }}
-    >
-      <div className="w-full max-w-sm">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <h1 className="font-serif text-3xl text-navy">Montufar Sys</h1>
-          <p className="text-orange-ink text-sm font-medium mt-1">Systems</p>
+    <AuthShell title="Acceder al panel" subtitle="Solo para el equipo Montufar Sys">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="email" className="text-sm font-medium text-navy">Email</label>
+          <input
+            id="email"
+            type="email"
+            autoComplete="email"
+            placeholder="tu@email.com"
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? 'email-error' : undefined}
+            {...register('email')}
+            className={inputClass(!!errors.email)}
+          />
+          {errors.email && <p id="email-error" className="text-xs text-red-600">{errors.email.message}</p>}
         </div>
 
-        {/* Card */}
-        <div className="bg-white rounded-2xl shadow-lg border border-cream2 p-8">
-          <h2 className="text-navy font-semibold text-xl mb-1">Acceder al panel</h2>
-          <p className="text-navy/40 text-sm mb-7">Solo para el equipo Montufar Sys</p>
-
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-            {/* Email */}
-            <div className="flex flex-col gap-1">
-              <label className="text-sm font-medium text-navy">Email</label>
-              <input
-                type="email"
-                placeholder="tu@email.com"
-                {...register('email')}
-                className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-colors bg-white text-navy placeholder:text-gray-300
-                  ${errors.email ? 'border-red-400 focus:border-red-500' : 'border-gray-200 focus:border-orange'}`}
-              />
-              {errors.email && (
-                <p className="text-xs text-red-500">{errors.email.message}</p>
-              )}
-            </div>
-
-            {/* Password */}
-            <div className="flex flex-col gap-1">
-              <label className="text-sm font-medium text-navy">Contraseña</label>
-              <div className="relative">
-                <input
-                  type={showPass ? 'text' : 'password'}
-                  placeholder="••••••••"
-                  {...register('password')}
-                  className={`w-full px-4 py-3 pr-11 rounded-xl border text-sm outline-none transition-colors bg-white text-navy placeholder:text-gray-300
-                    ${errors.password ? 'border-red-400 focus:border-red-500' : 'border-gray-200 focus:border-orange'}`}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPass((v) => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-navy transition-colors"
-                >
-                  {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
-              </div>
-              {errors.password && (
-                <p className="text-xs text-red-500">{errors.password.message}</p>
-              )}
-            </div>
-
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full py-3 bg-orange-ink hover:bg-orange-ink2 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center justify-between gap-2">
+            <label htmlFor="password" className="text-sm font-medium text-navy">Contraseña</label>
+            <Link
+              href="/recuperar"
+              className="text-sm font-medium text-orange-ink hover:text-orange-ink2 hover:underline underline-offset-2 py-2 -my-2"
             >
-              {isSubmitting && (
-                <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              )}
-              {isSubmitting ? 'Ingresando...' : 'Ingresar'}
-            </button>
-          </form>
+              ¿Olvidaste tu contraseña?
+            </Link>
+          </div>
+          <PasswordInput
+            id="password"
+            autoComplete="current-password"
+            placeholder="••••••••"
+            hasError={!!errors.password}
+            aria-invalid={!!errors.password}
+            aria-describedby={errors.password ? 'password-error' : undefined}
+            {...register('password')}
+          />
+          {errors.password && <p id="password-error" className="text-xs text-red-600">{errors.password.message}</p>}
         </div>
-      </div>
-    </div>
+
+        <SubmitButton loading={isSubmitting} loadingText="Ingresando...">Ingresar</SubmitButton>
+      </form>
+    </AuthShell>
   );
 }

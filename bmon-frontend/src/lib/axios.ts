@@ -27,7 +27,10 @@ api.interceptors.response.use(
 /** Mensaje de error que devuelve la API, o el texto por defecto. */
 export function apiErrorMessage(err: unknown, fallback: string): string {
   const msg = isAxiosError<{ message?: unknown }>(err) ? err.response?.data?.message : undefined;
-  return typeof msg === 'string' ? msg : fallback;
+  if (typeof msg === 'string') return msg;
+  // Los errores de validación de NestJS llegan como lista
+  if (Array.isArray(msg) && typeof msg[0] === 'string') return msg[0];
+  return fallback;
 }
 
 export default api;

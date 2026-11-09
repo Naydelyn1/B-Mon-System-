@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const publicPaths = ['/', '/login'];
+const publicPaths = ['/', '/login', '/recuperar', '/restablecer'];
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('montufar_token')?.value;
