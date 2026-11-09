@@ -1,4 +1,7 @@
-import { Body, Controller, Get, HttpCode, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, ForbiddenException, Get, HttpCode, Post, UseGuards } from '@nestjs/common';
+import { UserRol } from '../users/entities/user.entity';
+
+type JwtUser = { id: string; email: string; rol: string; nombre: string };
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
@@ -39,9 +42,16 @@ export class AuthController {
     return { message: 'Tu contraseña se actualizó. Ya puedes iniciar sesión.' };
   }
 
+  // Solo un admin con sesión iniciada puede crear usuarios.
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
   @Post('register')
-  register(@Body() dto: CreateUserDto) {
-    return this.usersService.create(dto);
+  async register(@CurrentUser() current: JwtUser, @Body() dto: CreateUserDto) {
+    if (current?.rol !== UserRol.ADMIN) {
+      throw new ForbiddenException('Solo un administrador puede crear usuarios');
+    }
+    const { password: _hash, ...user } = await this.usersService.create(dto);
+    return user;
   }
 
   @ApiBearerAuth()
