@@ -1,4 +1,6 @@
 import type { StaticImageData } from 'next/image';
+import pawsoftTienda from '@/assets/sistemas/pawsoft-tienda.jpg';
+import gymflowDashboard from '@/assets/sistemas/gymflow-dashboard.jpg';
 
 export interface Captura {
   src: StaticImageData;
@@ -6,9 +8,23 @@ export interface Captura {
   alt: string;
 }
 
-// Capturas reales de cada sistema, tomadas con datos de prueba (nunca de clientes reales).
+// Capturas reales de cada sistema, sin datos de personas (nombres y fotos pixelados).
+// Proporción 1.95:1 a 1600 px de ancho, igual que el marco del catálogo.
 // Para añadir una: copia la imagen a src/assets/sistemas/ e impórtala aquí, por ejemplo:
 //   import sysventaVenta from '@/assets/sistemas/sysventa-venta.webp';
 //   sysventa: [{ src: sysventaVenta, alt: 'Pantalla de nueva venta en SysVenta' }],
 // Un sistema sin capturas muestra su mockup en el catálogo.
-export const capturas: Partial<Record<'sysventa' | 'pawsoft' | 'gymflow' | 'medida', Captura[]>> = {};
+export const capturas: Partial<Record<'sysventa' | 'pawsoft' | 'gymflow' | 'medida', Captura[]>> = {
+  pawsoft: [
+    {
+      src: pawsoftTienda,
+      alt: 'PawSoft: tienda e inventario con productos veterinarios, precios, stock y botón para agregar al carrito',
+    },
+  ],
+  gymflow: [
+    {
+      src: gymflowDashboard,
+      alt: 'GymFlow: panel con socios activos, ingresos del mes, pagos pendientes y accesos rápidos',
+    },
+  ],
+};

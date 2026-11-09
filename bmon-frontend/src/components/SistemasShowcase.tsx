@@ -411,8 +411,8 @@ export function SistemasShowcase() {
                     {sistema.nombre.toLowerCase().replace(/ /g, '-')} · {foto ? 'captura real' : 'demo'}
                   </span>
                 </div>
-                {/* Proporción fija (16:10 desde sm) para que la página no salte al rotar */}
-                <div className="relative h-[300px] sm:h-auto sm:aspect-[16/10] bg-white">
+                {/* Proporción fija (la de las capturas, 1.95:1, desde sm) para que la página no salte al rotar */}
+                <div className="relative h-[300px] sm:h-auto sm:aspect-[39/20] bg-white">
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.div
                       key={foto ? `${sistema.id}-${shot}` : sistema.id}
@@ -429,7 +429,8 @@ export function SistemasShowcase() {
                           fill
                           sizes="(min-width: 1024px) 680px, 100vw"
                           placeholder={foto.src.blurDataURL ? 'blur' : 'empty'}
-                          className="object-contain"
+                          // Móvil: recorte legible de la esquina superior izquierda; desde sm, completa
+                          className="object-cover object-left-top sm:object-contain"
                         />
                       ) : (
                         <div className="h-full" aria-hidden>
