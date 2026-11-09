@@ -5,6 +5,26 @@ import { motion, useReducedMotion, useScroll, useTransform, type Variants } from
 import { useIntroDone } from './IntroGate';
 import { TerminalLine } from './TerminalLine';
 import { HeroLaptop } from './HeroLaptop';
+import { Descifrar, Letras, PalabraRotativa } from './HeroText';
+import { ArrowRight } from 'lucide-react';
+
+const DESCRIPCION =
+  'Desarrollamos sistemas, plataformas SaaS y aplicaciones web a medida. Equipo peruano, calidad internacional.';
+
+const titulo: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.028 } },
+};
+
+const parrafo: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.025, delayChildren: 0.2 } },
+};
+
+const palabra: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+};
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -37,6 +57,7 @@ export function HeroSection() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const parallaxY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 90]);
   const state = introDone ? 'show' : 'hidden';
+  const animar = introDone && !reduce;
 
   return (
     <section
@@ -53,27 +74,47 @@ export function HeroSection() {
         <motion.div variants={container} initial="hidden" animate={state}>
           <motion.span
             variants={item}
-            className="inline-block px-3 py-1 border border-orange/40 text-orange text-xs font-semibold rounded-full mb-6 tracking-wider uppercase"
+            className="inline-flex items-center gap-2 px-3 py-1 border border-orange/40 text-orange text-xs font-semibold rounded-full mb-6 tracking-wider uppercase"
           >
+            <span className="relative flex w-1.5 h-1.5" aria-hidden>
+              <span className="absolute inset-0 rounded-full bg-orange animate-ping opacity-75" />
+              <span className="relative w-1.5 h-1.5 rounded-full bg-orange" />
+            </span>
             Software a medida
           </motion.span>
           <motion.div variants={item}>
             <TerminalLine text="desplegando tu sistema…" start={introDone} />
           </motion.div>
-          <motion.h1 variants={item} className="font-serif text-4xl sm:text-5xl xl:text-6xl text-white leading-tight mb-6">
-            Soluciones digitales que{' '}
-            <span className="text-orange">impulsan</span> tu negocio
+          {/* Título letra a letra; la palabra naranja rota con efecto "descifrar" */}
+          <motion.h1
+            variants={titulo}
+            className="font-serif text-4xl sm:text-5xl xl:text-6xl text-white leading-[1.12] mb-6"
+          >
+            <span className="sr-only">Soluciones digitales que impulsan tu negocio</span>
+            <span aria-hidden className="block">
+              <Letras text="Soluciones digitales" />
+            </span>
+            <span aria-hidden className="block">
+              <Letras text="que" /> <PalabraRotativa active={animar} />
+            </span>
+            <span aria-hidden className="block">
+              <Letras text="tu negocio" />
+            </span>
           </motion.h1>
-          <motion.p variants={item} className="text-white/70 text-lg leading-relaxed mb-8 max-w-md">
-            Desarrollamos sistemas, plataformas SaaS y aplicaciones web a medida.
-            Equipo peruano, calidad internacional.
+          <motion.p variants={parrafo} className="text-white/70 text-lg leading-relaxed mb-8 max-w-md">
+            {DESCRIPCION.split(' ').map((w, i) => (
+              <motion.span key={i} variants={palabra} className="inline-block mr-[0.28em]">
+                {w}
+              </motion.span>
+            ))}
           </motion.p>
           <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a
               href="#contacto"
-              className="px-6 py-3 text-center bg-orange-ink hover:bg-orange-ink2 text-white font-semibold rounded-xl transition-colors"
+              className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-ink hover:bg-orange-ink2 text-white font-semibold rounded-xl transition-colors shadow-[0_8px_24px_-10px_rgba(232,98,42,0.7)]"
             >
               Comenzar proyecto
+              <ArrowRight size={18} aria-hidden className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#sistemas"
@@ -83,9 +124,11 @@ export function HeroSection() {
             </a>
           </motion.div>
           <motion.div variants={item} className="flex flex-wrap items-center gap-x-6 xl:gap-x-8 gap-y-4 mt-10 pt-10 border-t border-white/10">
-            {datos.map(([valor, label]) => (
+            {datos.map(([valor, label], i) => (
               <div key={label}>
-                <p className="font-mono text-white font-semibold text-lg">{valor}</p>
+                <p className="font-mono text-white font-semibold text-lg">
+                  <Descifrar text={valor} active={animar} delay={1700 + i * 180} />
+                </p>
                 <p className="text-white/60 text-xs">{label}</p>
               </div>
             ))}
