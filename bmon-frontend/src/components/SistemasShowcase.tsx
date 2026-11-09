@@ -14,6 +14,7 @@ import {
   IdCard,
   MessageCircle,
   PawPrint,
+  Pill,
   Puzzle,
   Receipt,
   ShieldCheck,
@@ -26,7 +27,7 @@ import Image from 'next/image';
 import { Reveal } from '@/components/Reveal';
 import { capturas } from '@/components/sistemas-capturas';
 
-type SistemaId = 'sysventa' | 'pawsoft' | 'gymflow' | 'medida';
+type SistemaId = 'pharmacore' | 'pawsoft' | 'gymflow' | 'medida';
 
 interface Sistema {
   id: SistemaId;
@@ -40,14 +41,15 @@ interface Sistema {
 
 const sistemas: Sistema[] = [
   {
-    id: 'sysventa',
-    nombre: 'SysVenta',
-    rubro: 'Ventas e inventario',
-    icon: ShoppingCart,
-    resumen: 'Punto de venta con control de stock, listo para emitir comprobantes electrónicos.',
+    id: 'pharmacore',
+    nombre: 'PharmaCore',
+    rubro: 'Farmacias y boticas',
+    icon: Pill,
+    resumen: 'Ventas e inventario para farmacias, listo para emitir comprobantes electrónicos.',
     features: [
       'Facturación electrónica SUNAT (Nubefact)',
       'Consulta de DNI (RENIEC)',
+      'Compras, proveedores y kardex',
       'Roles: admin, cajero y almacenero',
     ],
   },
@@ -91,7 +93,7 @@ const ROTATE_MS = 5000;
 
 /* ---------- Mockups (todos con datos ficticios) ---------- */
 
-function SysVentaMock() {
+function PharmaCoreMock() {
   const items = [
     { nombre: 'Producto Demo A', cant: 2, total: 'S/ 25.00' },
     { nombre: 'Producto Demo B', cant: 1, total: 'S/ 12.50' },
@@ -266,7 +268,7 @@ function MedidaMock() {
 }
 
 const mocks: Record<SistemaId, () => JSX.Element> = {
-  sysventa: SysVentaMock,
+  pharmacore: PharmaCoreMock,
   pawsoft: PawSoftMock,
   gymflow: GymFlowMock,
   medida: MedidaMock,
