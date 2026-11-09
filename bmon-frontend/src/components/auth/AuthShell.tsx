@@ -1,36 +1,43 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import gymflowDashboard from '@/assets/sistemas/gymflow-dashboard.jpg';
-import pharmacoreProductos from '@/assets/sistemas/pharmacore-productos.jpg';
+import { loginImagen } from './login-imagen';
 
-/** Captura en un marco de navegador. */
-function Ventana({ src, label, className = '' }: { src: typeof gymflowDashboard; label: string; className?: string }) {
-  return (
-    <div className={`rounded-xl overflow-hidden border border-white/15 bg-night2 ${className}`}>
-      <div className="flex items-center gap-1.5 px-3 h-7 border-b border-white/10" aria-hidden>
-        <span className="w-2 h-2 rounded-full bg-white/20" />
-        <span className="w-2 h-2 rounded-full bg-white/20" />
-        <span className="w-2 h-2 rounded-full bg-white/20" />
-        <span className="ml-2 font-mono text-[10px] text-white/40">{label}</span>
-      </div>
-      <Image src={src} alt="" sizes="(min-width: 1024px) 42vw, 1px" placeholder="blur" className="w-full h-auto" />
-    </div>
-  );
-}
-
-/** Mitad visual (solo en pantallas grandes): marca y capturas reales de los sistemas. */
+/** Mitad visual (solo en pantallas grandes): tu imagen a pantalla completa, o el fondo tech si no hay. */
 function PanelVisual() {
   return (
     <aside className="relative hidden lg:flex flex-col justify-between overflow-hidden bg-night bg-tech-grid bg-grid text-white p-10 xl:p-14">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-tech/10 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-48 -right-32 w-[520px] h-[520px] rounded-full bg-orange/10 blur-3xl"
-      />
+      {loginImagen ? (
+        <>
+          <Image
+            src={loginImagen}
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 1024px) 50vw, 1px"
+            placeholder="blur"
+            className="object-cover"
+          />
+          {/* Oscurece arriba y abajo para que el logo y el texto se lean sobre cualquier foto */}
+          <div aria-hidden className="absolute inset-0 bg-night/30" />
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-gradient-to-t from-night from-5% via-night/75 via-45% to-transparent"
+          />
+          <div aria-hidden className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-night/70 to-transparent" />
+        </>
+      ) : (
+        <>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-tech/10 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -bottom-48 -right-32 w-[520px] h-[520px] rounded-full bg-orange/10 blur-3xl"
+          />
+        </>
+      )}
 
       <Link href="/" className="relative self-start rounded-lg" aria-label="Montufar Sys, ir al inicio">
         <span className="block font-serif text-2xl">Montufar Sys</span>
@@ -42,21 +49,11 @@ function PanelVisual() {
         <h2 className="font-serif text-3xl xl:text-4xl leading-tight max-w-md">
           Tus clientes, contratos y pagos en un solo lugar.
         </h2>
-        <p className="mt-3 text-white/60 text-sm max-w-sm">
+        <p className="mt-3 text-white/70 text-sm max-w-sm">
           Gestiona los sistemas que desarrollamos y sigue cada suscripción desde aquí.
         </p>
-
-        <div className="relative mt-16 mr-8" aria-hidden>
-          <Ventana
-            src={pharmacoreProductos}
-            label="pharmacore"
-            className="absolute -top-8 left-12 right-[-3rem] rotate-2 opacity-50"
-          />
-          <Ventana src={gymflowDashboard} label="gymflow" className="relative shadow-glow" />
-        </div>
+        <p className="mt-10 font-mono text-xs text-white/50">© {new Date().getFullYear()} Montufar Systems</p>
       </div>
-
-      <p className="relative font-mono text-xs text-white/40">© {new Date().getFullYear()} Montufar Systems</p>
     </aside>
   );
 }
