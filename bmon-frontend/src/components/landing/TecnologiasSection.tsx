@@ -11,7 +11,7 @@ export function TecnologiasSection() {
   return (
     <section id="tecnologias" className="py-16 bg-white overflow-hidden border-y border-cream2">
       <div className="text-center mb-10">
-        <span className="text-navy/30 text-xs font-semibold uppercase tracking-widest">
+        <span className="text-navy/70 text-xs font-semibold uppercase tracking-widest">
           Tecnologías que usamos
         </span>
       </div>
@@ -20,7 +20,7 @@ export function TecnologiasSection() {
           {techs.map((tech, i) => (
             <span
               key={i}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-cream rounded-full border border-cream2 text-navy/60 text-sm font-medium flex-shrink-0"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-cream rounded-full border border-cream2 text-navy/75 text-sm font-medium flex-shrink-0"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-orange" />
               {tech}

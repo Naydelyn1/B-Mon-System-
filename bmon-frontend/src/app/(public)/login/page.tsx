@@ -48,7 +48,7 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <h1 className="font-serif text-3xl text-navy">Montufar Sys</h1>
-          <p className="text-orange text-sm font-medium mt-1">Development</p>
+          <p className="text-orange text-sm font-medium mt-1">Systems</p>
         </div>
 
         {/* Card */}

@@ -22,7 +22,7 @@ export function Sidebar() {
       {/* Logo */}
       <div className="px-5 py-5 border-b border-white/10">
         <p className="text-white font-bold text-base leading-tight">Montufar Sys</p>
-        <p className="text-orange text-xs">Development</p>
+        <p className="text-orange text-xs">Systems</p>
       </div>
 
       {/* Nav */}

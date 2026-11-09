@@ -1,18 +1,28 @@
 const links = {
-  Servicios: ['Desarrollo Web', 'Sistemas a Medida', 'SaaS Solutions', 'Consultoría IT'],
-  Empresa: ['Nosotros', 'Proceso', 'Tecnologías', 'Contacto'],
+  Servicios: [
+    { label: 'Desarrollo Web', href: '#servicios' },
+    { label: 'Sistemas a Medida', href: '#sistemas' },
+    { label: 'SaaS Solutions', href: '#servicios' },
+    { label: 'Consultoría IT', href: '#servicios' },
+  ],
+  Empresa: [
+    { label: 'Nosotros', href: '#nosotros' },
+    { label: 'Metodología', href: '#proceso' },
+    { label: 'Tecnologías', href: '#tecnologias' },
+    { label: 'Contacto', href: '#contacto' },
+  ],
 };
 
 export function Footer() {
   return (
-    <footer className="bg-[#111827] text-white/50 py-16">
+    <footer className="bg-[#111827] text-white/70 py-16">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="mb-4">
               <p className="text-white font-bold text-lg leading-tight">Montufar Sys</p>
-              <p className="text-orange text-xs">Development</p>
+              <p className="text-orange text-xs">Systems</p>
             </div>
             <p className="text-sm leading-relaxed max-w-xs">
               Desarrollamos soluciones digitales a medida para empresas que quieren crecer.
@@ -27,9 +37,9 @@ export function Footer() {
               <p className="text-white text-sm font-semibold mb-4">{title}</p>
               <ul className="space-y-2.5">
                 {items.map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm hover:text-white transition-colors">
-                      {item}
+                  <li key={item.label}>
+                    <a href={item.href} className="inline-flex items-center min-h-[32px] text-sm hover:text-white transition-colors">
+                      {item.label}
                     </a>
                   </li>
                 ))}
