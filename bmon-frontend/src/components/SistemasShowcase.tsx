@@ -278,15 +278,28 @@ export function SistemasShowcase() {
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
+  const listRef = useRef<HTMLDivElement>(null);
 
-  // Sin rotación automática con reduced motion (el usuario elige)
-  const autoplay = !reduce && !hovered && !focused;
+  // Sin rotación automática con reduced motion (el usuario elige). Arranca tras
+  // montar para que el HTML del servidor y el primer render coincidan.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const autoplay = mounted && !reduce && !hovered && !focused;
 
   useEffect(() => {
     if (!autoplay) return;
     const timer = setTimeout(() => setActive((i) => (i + 1) % sistemas.length), ROTATE_MS);
     return () => clearTimeout(timer);
   }, [active, autoplay]);
+
+  // Móvil: la lista es una fila deslizable; mantiene visible el sistema activo
+  useEffect(() => {
+    const list = listRef.current;
+    const tab = tabsRef.current[active];
+    if (!list || !tab || list.scrollWidth <= list.clientWidth) return;
+    const pad = parseFloat(getComputedStyle(list).paddingLeft) || 0;
+    list.scrollTo({ left: tab.offsetLeft - pad, behavior: reduce ? 'auto' : 'smooth' });
+  }, [active, reduce]);
 
   const onKeyDown = useCallback((e: React.KeyboardEvent, i: number) => {
     const delta = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
@@ -301,11 +314,11 @@ export function SistemasShowcase() {
   const Mock = mocks[sistema.id];
 
   return (
-    <section id="sistemas" className="py-24 bg-cream">
+    <section id="sistemas" className="py-16 sm:py-24 bg-cream">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-14">
           <span className="font-mono text-orange-ink text-sm font-medium">{'// '}Catálogo</span>
-          <h2 className="font-serif text-4xl text-navy mt-2">Nuestros sistemas</h2>
+          <h2 className="font-serif text-3xl sm:text-4xl text-navy mt-2">Nuestros sistemas</h2>
           <p className="text-navy/70 mt-4 max-w-xl mx-auto">
             Sistemas propios listos para adaptarse a tu negocio, o uno nuevo hecho desde cero para ti.
           </p>
@@ -316,13 +329,19 @@ export function SistemasShowcase() {
             className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-8 items-start"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
+            onTouchStart={() => setHovered(true)}
             onFocus={() => setFocused(true)}
             onBlur={(e) => {
               if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocused(false);
             }}
           >
             {/* Lista */}
-            <div role="tablist" aria-label="Sistemas" aria-orientation="vertical" className="grid sm:grid-cols-2 lg:grid-cols-1 gap-3">
+            <div
+              ref={listRef}
+              role="tablist"
+              aria-label="Sistemas"
+              className="relative flex sm:grid sm:grid-cols-2 lg:grid-cols-1 gap-3 overflow-x-auto sm:overflow-visible snap-x snap-mandatory scroll-px-6 sm:scroll-px-0 -mx-6 px-6 sm:mx-0 sm:px-0 pt-1 pb-3 sm:p-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
               {sistemas.map((s, i) => {
                 const selected = i === active;
                 const Icon = s.icon;
@@ -340,7 +359,7 @@ export function SistemasShowcase() {
                     tabIndex={selected ? 0 : -1}
                     onClick={() => setActive(i)}
                     onKeyDown={(e) => onKeyDown(e, i)}
-                    className={`relative overflow-hidden text-left flex items-center gap-4 rounded-2xl px-5 py-4 min-h-[72px] border transition duration-200 ${
+                    className={`relative overflow-hidden text-left flex items-center gap-4 rounded-2xl px-5 py-4 min-h-[72px] border transition duration-200 flex-shrink-0 w-[80%] sm:w-auto snap-start ${
                       selected
                         ? 'bg-white border-orange/40 shadow-lg'
                         : 'bg-white/60 border-cream2 hover:bg-white hover:-translate-y-1 hover:shadow-glow'
@@ -400,7 +419,7 @@ export function SistemasShowcase() {
                 </div>
               </div>
 
-              <div className="mt-6 min-h-[168px]">
+              <div className="mt-6 min-h-[280px] sm:min-h-[190px]">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={sistema.id}

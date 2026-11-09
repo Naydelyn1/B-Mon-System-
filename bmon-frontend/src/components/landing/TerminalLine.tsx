@@ -10,14 +10,19 @@ export function TerminalLine({ text, start }: { text: string; start: boolean }) 
   const reduce = useReducedMotion();
   const [count, setCount] = useState(0);
 
+  // El texto completo se pone tras montar (no en el render) para que el HTML
+  // del servidor y el primer render del cliente coincidan.
   useEffect(() => {
-    if (!start || reduce) return;
-    if (count >= text.length) return;
+    if (reduce) {
+      setCount(text.length);
+      return;
+    }
+    if (!start || count >= text.length) return;
     const timer = setTimeout(() => setCount((c) => c + 1), CHAR_MS);
     return () => clearTimeout(timer);
   }, [start, reduce, count, text.length]);
 
-  const shown = reduce ? text : text.slice(0, count);
+  const shown = text.slice(0, count);
 
   return (
     <p className="font-mono text-sm text-tech mb-5 min-h-[1.25rem]" aria-label={text}>

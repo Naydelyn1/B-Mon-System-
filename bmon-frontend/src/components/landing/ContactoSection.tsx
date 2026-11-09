@@ -36,17 +36,17 @@ export function ContactoSection() {
   };
 
   return (
-    <section id="contacto" className="py-24 bg-night bg-tech-grid bg-grid relative overflow-hidden">
+    <section id="contacto" className="py-16 sm:py-24 bg-night bg-tech-grid bg-grid relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-16">
           <span className="font-mono text-orange text-sm font-medium">{'// '}Conversemos</span>
-          <h2 className="font-serif text-4xl text-white mt-2">¿Tienes un proyecto en mente?</h2>
+          <h2 className="font-serif text-3xl sm:text-4xl text-white mt-2">¿Tienes un proyecto en mente?</h2>
           <p className="text-white/70 mt-4 max-w-xl mx-auto">
             Cuéntanos qué necesitas y te respondemos pronto.
           </p>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12">
           {/* Formulario */}
           <Reveal>
             <form onSubmit={handleSubmit} className="bg-night2 rounded-2xl p-6 sm:p-8 border border-tech/20 space-y-5">

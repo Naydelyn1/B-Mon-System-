@@ -46,7 +46,7 @@ export function IntroSkeleton() {
       </div>
 
       {/* Hero */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12 items-center pt-16 md:pt-24">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-12 items-center pt-16 lg:pt-24">
         <div>
           <Block className="w-36 h-6 rounded-full mb-6" delay={0.1} />
           <div className="space-y-3 mb-6">
@@ -63,7 +63,7 @@ export function IntroSkeleton() {
             <Block className="w-32 h-12 rounded-xl" delay={0.45} />
           </div>
         </div>
-        <div className="hidden md:flex justify-center">
+        <div className="hidden lg:flex justify-center">
           <Block className="w-full max-w-sm h-80 rounded-2xl" delay={0.3} />
         </div>
       </div>

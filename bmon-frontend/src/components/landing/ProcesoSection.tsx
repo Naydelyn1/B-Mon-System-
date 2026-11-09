@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from 'motion/react';
+import { useEffect, useRef } from 'react';
+import { motion, useMotionValue, useReducedMotion, useScroll, useTransform, type MotionValue } from 'motion/react';
 import { MessageCircle, PenTool, Code2, LifeBuoy } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
 
@@ -39,11 +39,24 @@ const lineInset = 'calc(12.5% - 0.5625rem)';
 function Paso({ paso, index, progress }: { paso: (typeof pasos)[number]; index: number; progress: MotionValue<number> }) {
   const { num, icon: Icon, title, desc } = paso;
   // El círculo se pinta de naranja cuando la línea llega hasta él
-  const at = index / (pasos.length - 1);
+  const last = pasos.length - 1;
+  const at = index / last;
   const fill = useTransform(progress, [Math.max(0, at - 0.08), at], [0, 1]);
+  // Móvil: tramo vertical hasta el siguiente círculo, que se dibuja con el scroll
+  const segment = useTransform(progress, [at, Math.min(1, (index + 1) / last)], [0, 1]);
 
   return (
-    <li className="flex md:flex-col md:items-center gap-5 md:gap-6">
+    <li className="relative flex lg:flex-col lg:items-center gap-5 lg:gap-6">
+      {index < last && (
+        <>
+          <span aria-hidden className="lg:hidden absolute left-[27px] top-14 -bottom-8 w-0.5 bg-navy/10" />
+          <motion.span
+            aria-hidden
+            style={{ scaleY: segment }}
+            className="lg:hidden absolute left-[27px] top-14 -bottom-8 w-0.5 bg-orange origin-top"
+          />
+        </>
+      )}
       <motion.span
         initial={{ opacity: 0, scale: 0.6 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -55,7 +68,7 @@ function Paso({ paso, index, progress }: { paso: (typeof pasos)[number]; index: 
         <span className="relative font-mono text-white font-semibold">{num}</span>
       </motion.span>
 
-      <Reveal delay={0.1 + index * 0.12} className="flex-1 md:w-full h-full">
+      <Reveal delay={0.1 + index * 0.12} className="flex-1 min-w-0 lg:w-full h-full">
         <div className="h-full bg-white rounded-2xl p-6 shadow-sm border border-white hover:-translate-y-1 hover:shadow-glow transition duration-200">
           <div className="w-9 h-9 rounded-xl bg-navy flex items-center justify-center mb-4">
             <Icon size={18} className="text-white" />
@@ -72,14 +85,18 @@ export function ProcesoSection() {
   const reduce = useReducedMotion();
   const listRef = useRef<HTMLOListElement>(null);
   const { scrollYProgress } = useScroll({ target: listRef, offset: ['start 80%', 'end 60%'] });
-  const progress = useTransform(scrollYProgress, (v) => (reduce ? 1 : v));
+  // Con reduced motion la línea se muestra completa. Se aplica tras montar
+  // para que el HTML del servidor y el primer render del cliente coincidan.
+  const full = useMotionValue(0);
+  useEffect(() => full.set(reduce ? 1 : 0), [reduce, full]);
+  const progress = useTransform([scrollYProgress, full], ([v, f]: number[]) => (f ? 1 : v));
 
   return (
-    <section id="proceso" className="py-24 bg-mint">
+    <section id="proceso" className="py-16 sm:py-24 bg-mint">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-16">
           <span className="font-mono text-orange-ink text-sm font-medium">{'// '}Metodología</span>
-          <h2 className="font-serif text-4xl text-navy mt-2">¿Cómo trabajamos?</h2>
+          <h2 className="font-serif text-3xl sm:text-4xl text-navy mt-2">¿Cómo trabajamos?</h2>
           <p className="text-navy/70 mt-4 max-w-xl mx-auto">
             Un proceso claro y transparente de principio a fin.
           </p>
@@ -87,21 +104,14 @@ export function ProcesoSection() {
 
         <div className="relative">
           {/* Línea horizontal (escritorio): pista + trazo que se dibuja con el scroll */}
-          <div aria-hidden className="hidden md:block absolute top-7 h-0.5 bg-navy/10 rounded-full" style={{ left: lineInset, right: lineInset }} />
+          <div aria-hidden className="hidden lg:block absolute top-7 h-0.5 bg-navy/10 rounded-full" style={{ left: lineInset, right: lineInset }} />
           <motion.div
             aria-hidden
-            className="hidden md:block absolute top-7 h-0.5 bg-orange rounded-full origin-left"
+            className="hidden lg:block absolute top-7 h-0.5 bg-orange rounded-full origin-left"
             style={{ left: lineInset, right: lineInset, scaleX: progress }}
           />
-          {/* Línea vertical (móvil) */}
-          <div aria-hidden className="md:hidden absolute left-7 top-7 bottom-7 w-0.5 bg-navy/10 rounded-full" />
-          <motion.div
-            aria-hidden
-            className="md:hidden absolute left-7 top-7 bottom-7 w-0.5 bg-orange rounded-full origin-top"
-            style={{ scaleY: progress }}
-          />
 
-          <ol ref={listRef} className="relative grid md:grid-cols-4 gap-8 md:gap-6">
+          <ol ref={listRef} className="relative grid lg:grid-cols-4 gap-8 lg:gap-6">
             {pasos.map((paso, i) => (
               <Paso key={paso.num} paso={paso} index={i} progress={progress} />
             ))}

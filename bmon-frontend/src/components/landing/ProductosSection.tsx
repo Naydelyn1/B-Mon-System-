@@ -52,18 +52,18 @@ const planes = [
 
 export function ProductosSection() {
   return (
-    <section id="planes" className="py-24 bg-white">
+    <section id="planes" className="py-16 sm:py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-14">
           <span className="font-mono text-orange-ink text-sm font-medium">{'// '}Planes</span>
-          <h2 className="font-serif text-4xl text-navy mt-2">Elige tu plan</h2>
+          <h2 className="font-serif text-3xl sm:text-4xl text-navy mt-2">Elige tu plan</h2>
           <p className="text-navy/70 mt-4 max-w-md mx-auto text-sm leading-relaxed">
             Sin importar el tamaño de tu empresa, tenemos un plan que se adapta a ti.
             El precio lo conversamos juntos.
           </p>
         </Reveal>
 
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+        <div className="grid lg:grid-cols-3 gap-6 items-stretch max-w-xl mx-auto lg:max-w-none">
           {planes.map((plan, i) => (
             <Reveal key={plan.nombre} delay={i * 0.1} className="h-full">
               <div
@@ -78,7 +78,7 @@ export function ProductosSection() {
                 )}
 
                 {/* Header */}
-                <div className={`p-7 pt-10 rounded-t-2xl ${plan.destacado ? 'bg-orange-ink' : 'bg-navy'}`}>
+                <div className={`p-6 sm:p-7 pt-10 rounded-t-2xl ${plan.destacado ? 'bg-orange-ink' : 'bg-navy'}`}>
                   <span className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center">
                     <plan.icon size={22} className="text-white" />
                   </span>
@@ -89,7 +89,7 @@ export function ProductosSection() {
                 </div>
 
                 {/* Features */}
-                <div className="bg-white border border-gray-100 rounded-b-2xl flex-1 flex flex-col p-7">
+                <div className="bg-white border border-gray-100 rounded-b-2xl flex-1 flex flex-col p-6 sm:p-7">
                   <ul className="space-y-3 flex-1">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-2.5">

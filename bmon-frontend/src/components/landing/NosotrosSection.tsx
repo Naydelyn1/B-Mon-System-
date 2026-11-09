@@ -26,14 +26,14 @@ export function NosotrosSection() {
   const [activeTab, setActiveTab] = useState<typeof tabs[number]>('Misión');
 
   return (
-    <section id="nosotros" className="py-24 bg-cream">
+    <section id="nosotros" className="py-16 sm:py-24 bg-cream">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-16">
           <span className="font-mono text-orange-ink text-sm font-medium">{'// '}Quiénes somos</span>
-          <h2 className="font-serif text-4xl text-navy mt-2">El equipo detrás de Montufar Systems</h2>
+          <h2 className="font-serif text-3xl sm:text-4xl text-navy mt-2">El equipo detrás de Montufar Systems</h2>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Tabs Misión / Visión */}
           <Reveal>
             <div className="flex gap-2 mb-6" role="tablist" aria-label="Misión y visión">
@@ -55,7 +55,7 @@ export function NosotrosSection() {
                 </button>
               ))}
             </div>
-            <div role="tabpanel" className="bg-white rounded-2xl p-8 shadow-sm border border-cream2 min-h-[140px]">
+            <div role="tabpanel" className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-cream2 min-h-[140px]">
               <p className="text-navy/75 leading-relaxed text-base">{content[activeTab]}</p>
             </div>
 
