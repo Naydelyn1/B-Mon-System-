@@ -22,7 +22,9 @@ import {
   Users,
   type LucideIcon,
 } from 'lucide-react';
+import Image from 'next/image';
 import { Reveal } from '@/components/Reveal';
+import { capturas } from '@/components/sistemas-capturas';
 
 type SistemaId = 'sysventa' | 'pawsoft' | 'gymflow' | 'medida';
 
@@ -277,6 +279,7 @@ export function SistemasShowcase() {
   const [active, setActive] = useState(0);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
+  const [shot, setShot] = useState(0);
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -310,8 +313,13 @@ export function SistemasShowcase() {
     tabsRef.current[next]?.focus();
   }, []);
 
+  // Al cambiar de sistema se vuelve a su primera captura
+  useEffect(() => setShot(0), [active]);
+
   const sistema = sistemas[active];
   const Mock = mocks[sistema.id];
+  const fotos = capturas[sistema.id] ?? [];
+  const foto = fotos[shot] ?? fotos[0];
 
   return (
     <section id="sistemas" className="py-16 sm:py-24 bg-cream">
@@ -400,24 +408,58 @@ export function SistemasShowcase() {
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
                   <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
                   <span className="ml-3 flex-1 max-w-[240px] truncate rounded-md bg-white border border-cream2 px-3 py-1 font-mono text-[11px] text-navy/60">
-                    {sistema.nombre.toLowerCase().replace(/ /g, "-")} · demo
+                    {sistema.nombre.toLowerCase().replace(/ /g, '-')} · {foto ? 'captura real' : 'demo'}
                   </span>
                 </div>
-                <div className="h-[300px] sm:h-[320px] relative" aria-hidden>
+                {/* Proporción fija (16:10 desde sm) para que la página no salte al rotar */}
+                <div className="relative h-[300px] sm:h-auto sm:aspect-[16/10] bg-white">
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.div
-                      key={sistema.id}
+                      key={foto ? `${sistema.id}-${shot}` : sistema.id}
                       className="absolute inset-0"
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -12 }}
                       transition={{ duration: 0.35, ease: 'easeOut' }}
                     >
-                      <Mock />
+                      {foto ? (
+                        <Image
+                          src={foto.src}
+                          alt={foto.alt}
+                          fill
+                          sizes="(min-width: 1024px) 680px, 100vw"
+                          placeholder={foto.src.blurDataURL ? 'blur' : 'empty'}
+                          className="object-contain"
+                        />
+                      ) : (
+                        <div className="h-full" aria-hidden>
+                          <Mock />
+                        </div>
+                      )}
                     </motion.div>
                   </AnimatePresence>
                 </div>
               </div>
+
+              {/* Miniaturas cuando el sistema tiene varias capturas */}
+              {fotos.length > 1 && (
+                <div className="mt-3 flex gap-2 overflow-x-auto pb-1" aria-label={`Capturas de ${sistema.nombre}`}>
+                  {fotos.map((f, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setShot(i)}
+                      aria-label={`Ver captura ${i + 1} de ${fotos.length}: ${f.alt}`}
+                      aria-pressed={i === shot}
+                      className={`relative flex-shrink-0 w-20 h-12 rounded-lg overflow-hidden border-2 transition ${
+                        i === shot ? 'border-orange' : 'border-cream2 opacity-70 hover:opacity-100'
+                      }`}
+                    >
+                      <Image src={f.src} alt="" fill sizes="80px" className="object-cover object-left-top" />
+                    </button>
+                  ))}
+                </div>
+              )}
 
               <div className="mt-6 min-h-[280px] sm:min-h-[190px]">
                 <AnimatePresence mode="wait" initial={false}>

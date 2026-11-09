@@ -36,3 +36,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# capturas originales de los sistemas (pueden tener datos reales; no se suben)
+/capturas/
