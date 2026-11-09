@@ -243,8 +243,9 @@ const modulos: { label: string; icon: LucideIcon; from: { x: number; y: number; 
 
 function MedidaMock() {
   return (
-    <div className="h-full p-4 sm:p-5 flex items-center justify-center">
-      <div className="grid grid-cols-3 gap-2.5 w-full max-w-[240px]">
+    <div className="h-full p-3 sm:p-5 flex items-center justify-center">
+      {/* Móvil: fichas horizontales en 3 filas para caber en el marco 1.95:1; desde sm, cuadrados */}
+      <div className="grid grid-cols-3 gap-1.5 sm:gap-2.5 w-full sm:max-w-[240px]">
         {modulos.map(({ label, icon: Icon, from }, i) => {
           const centro = label === 'Tu negocio';
           return (
@@ -253,12 +254,12 @@ function MedidaMock() {
               initial={{ opacity: 0, ...from, scale: 0.85 }}
               animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
               transition={{ type: 'spring', stiffness: 220, damping: 20, delay: 0.1 + i * 0.06 }}
-              className={`aspect-square rounded-xl flex flex-col items-center justify-center gap-1.5 text-center ${
+              className={`h-[38px] sm:h-auto sm:aspect-square rounded-lg sm:rounded-xl flex sm:flex-col items-center justify-center gap-1 sm:gap-1.5 px-1 text-center ${
                 centro ? 'bg-orange-ink text-white shadow-lg' : 'bg-cream border border-cream2 text-navy'
               }`}
             >
-              <Icon size={18} className={centro ? 'text-white' : 'text-navy/70'} />
-              <span className="text-[11px] font-medium leading-tight">{label}</span>
+              <Icon className={`w-3.5 h-3.5 sm:w-[18px] sm:h-[18px] flex-shrink-0 ${centro ? 'text-white' : 'text-navy/70'}`} />
+              <span className="text-[10px] sm:text-[11px] font-medium leading-tight">{label}</span>
             </motion.div>
           );
         })}
@@ -413,8 +414,12 @@ export function SistemasShowcase() {
                     {sistema.nombre.toLowerCase().replace(/ /g, '-')} · {foto ? 'captura real' : 'demo'}
                   </span>
                 </div>
-                {/* Proporción fija (la de las capturas, 1.95:1, desde sm) para que la página no salte al rotar */}
-                <div className="relative h-[300px] sm:h-auto sm:aspect-[39/20] bg-white">
+                {/* Proporción fija (la de las capturas, 1.95:1) para que la página no salte al rotar */}
+                <div
+                  className={`relative bg-white ${
+                    foto || sistema.id === 'medida' ? 'aspect-[39/20]' : 'h-[300px] sm:h-auto sm:aspect-[39/20]'
+                  }`}
+                >
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.div
                       key={foto ? `${sistema.id}-${shot}` : sistema.id}
@@ -431,8 +436,7 @@ export function SistemasShowcase() {
                           fill
                           sizes="(min-width: 1024px) 680px, 100vw"
                           placeholder={foto.src.blurDataURL ? 'blur' : 'empty'}
-                          // Móvil: recorte legible de la esquina superior izquierda; desde sm, completa
-                          className="object-cover object-left-top sm:object-contain"
+                          className="object-contain"
                         />
                       ) : (
                         <div className="h-full" aria-hidden>
