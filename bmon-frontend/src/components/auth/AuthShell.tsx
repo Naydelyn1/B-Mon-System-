@@ -7,42 +7,33 @@ import { loginImagen } from './login-imagen';
 function PanelVisual() {
   return (
     <aside className="relative hidden lg:flex flex-col justify-between overflow-hidden bg-night bg-tech-grid bg-grid text-white p-10 xl:p-14">
-      {loginImagen ? (
-        <>
-          <Image
-            src={loginImagen}
-            alt=""
-            fill
-            priority
-            sizes="(min-width: 1024px) 50vw, 1px"
-            placeholder="blur"
-            className="object-cover"
-          />
-          {/* Oscurece arriba y abajo para que el logo y el texto se lean sobre cualquier foto */}
-          <div aria-hidden className="absolute inset-0 bg-night/30" />
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-gradient-to-t from-night from-5% via-night/75 via-45% to-transparent"
-          />
-          <div aria-hidden className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-night/70 to-transparent" />
-        </>
-      ) : (
-        <>
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-tech/10 blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -bottom-48 -right-32 w-[520px] h-[520px] rounded-full bg-orange/10 blur-3xl"
-          />
-        </>
-      )}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-tech/10 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-48 -right-32 w-[520px] h-[520px] rounded-full bg-orange/10 blur-3xl"
+      />
 
       <Link href="/" className="relative self-start rounded-lg" aria-label="Montufar Sys, ir al inicio">
         <span className="block font-serif text-2xl">Montufar Sys</span>
         <span className="block text-tech text-sm font-medium">Systems</span>
       </Link>
+
+      {/* La imagen completa, centrada en un marco (sin recortes ni oscurecerla) */}
+      {loginImagen && (
+        <div className="relative flex-1 min-h-0 flex items-center justify-center py-6">
+          <Image
+            src={loginImagen}
+            alt=""
+            priority
+            sizes="(min-width: 1024px) 40vw, 1px"
+            placeholder="blur"
+            className="h-full max-h-[44vh] w-auto max-w-full object-contain rounded-2xl border border-white/15 shadow-glow"
+          />
+        </div>
+      )}
 
       <div className="relative">
         <p className="font-mono text-xs text-tech mb-3">{'// panel interno'}</p>
