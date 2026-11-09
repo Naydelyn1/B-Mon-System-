@@ -3,6 +3,7 @@ import { IntroGate, introScript } from '@/components/landing/IntroGate';
 import { HeroSection } from '@/components/landing/HeroSection';
 import { NosotrosSection } from '@/components/landing/NosotrosSection';
 import { ServiciosSection } from '@/components/landing/ServiciosSection';
+import { SistemasShowcase } from '@/components/SistemasShowcase';
 import { ProductosSection } from '@/components/landing/ProductosSection';
 import { ProcesoSection } from '@/components/landing/ProcesoSection';
 import { TecnologiasSection } from '@/components/landing/TecnologiasSection';
@@ -20,6 +21,7 @@ export default function LandingPage() {
           <HeroSection />
           <NosotrosSection />
           <ServiciosSection />
+          <SistemasShowcase />
           <ProductosSection />
           <ProcesoSection />
           <TecnologiasSection />
