@@ -104,6 +104,44 @@ export class MailService {
     }
   }
 
+  /** Lanza el error si falla, para que quien llama lo registre. */
+  async sendPasswordReset(to: string, nombre: string, url: string): Promise<void> {
+    const esc = (s: string) =>
+      s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+    await this.transporter.sendMail({
+      from: `"Montufar Systems" <${this.config.get('MAIL_USER')}>`,
+      to,
+      subject: 'Restablece tu contraseña de Montufar Sys',
+      text: `Hola, ${nombre}. Para crear una contraseña nueva abre este enlace (vale 30 minutos y un solo uso): ${url}\nSi no lo pediste, ignora este correo; tu contraseña no cambia.`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1a2236;">
+          <div style="background: #0b1220; padding: 28px 32px; border-radius: 12px 12px 0 0;">
+            <h1 style="margin: 0; color: #fff; font-size: 22px; letter-spacing: 1px;">Montufar Sys</h1>
+          </div>
+          <div style="background: #fff; padding: 32px; border: 1px solid #f0ece6; border-top: none; border-radius: 0 0 12px 12px;">
+            <h2 style="margin-top: 0; font-size: 20px;">Hola, ${esc(nombre)}</h2>
+            <p style="line-height: 1.6; color: #444;">
+              Recibimos una solicitud para restablecer la contraseña de tu cuenta del panel.
+              Pulsa el botón para crear una nueva:
+            </p>
+            <p style="margin: 28px 0; text-align: center;">
+              <a href="${esc(url)}" style="display: inline-block; background: #b4441a; color: #fff; text-decoration: none; font-weight: bold; padding: 14px 28px; border-radius: 10px;">
+                Crear contraseña nueva
+              </a>
+            </p>
+            <p style="line-height: 1.6; color: #444; font-size: 14px;">
+              El enlace vale <strong>30 minutos</strong> y solo se puede usar una vez.
+              Si no pediste este cambio, ignora este correo: tu contraseña sigue siendo la misma.
+            </p>
+            <p style="margin-top: 32px; color: #888; font-size: 13px;">
+              Este es un correo automático, por favor no respondas a este mensaje.
+            </p>
+          </div>
+        </div>
+      `,
+    });
+  }
+
   async sendWelcome(to: string, nombre: string): Promise<void> {
     try {
       await this.transporter.sendMail({

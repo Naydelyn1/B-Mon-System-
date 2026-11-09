@@ -7,11 +7,13 @@ import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { UsersModule } from '../users/users.module';
+import { MailModule } from '../mail/mail.module';
 import { SERVER_INSTANCE_ID } from './server-instance';
 
 @Module({
   imports: [
     UsersModule,
+    MailModule,
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],

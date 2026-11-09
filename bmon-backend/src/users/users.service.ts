@@ -37,6 +37,19 @@ export class UsersService {
     });
   }
 
+  /** Incluye el hash de la contraseña; solo para uso interno de auth. */
+  async findByIdWithPassword(id: string): Promise<User | null> {
+    return this.userRepository.findOne({
+      where: { id },
+      select: { id: true, nombre: true, email: true, password: true },
+    });
+  }
+
+  async updatePassword(id: string, plainPassword: string): Promise<void> {
+    const hashed = await bcrypt.hash(plainPassword, 10);
+    await this.userRepository.update(id, { password: hashed });
+  }
+
   async findById(id: string): Promise<User> {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
