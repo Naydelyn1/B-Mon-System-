@@ -52,11 +52,11 @@ function Paso({ paso, index, progress }: { paso: (typeof pasos)[number]; index: 
         className="relative z-10 w-14 h-14 flex-shrink-0 rounded-full bg-navy border-4 border-mint flex items-center justify-center"
       >
         <motion.span aria-hidden style={{ opacity: fill }} className="absolute inset-0 rounded-full bg-orange" />
-        <span className="relative text-white font-bold">{num}</span>
+        <span className="relative font-mono text-white font-semibold">{num}</span>
       </motion.span>
 
       <Reveal delay={0.1 + index * 0.12} className="flex-1 md:w-full h-full">
-        <div className="h-full bg-white rounded-2xl p-6 shadow-sm border border-white hover:-translate-y-1 hover:shadow-lg transition duration-200">
+        <div className="h-full bg-white rounded-2xl p-6 shadow-sm border border-white hover:-translate-y-1 hover:shadow-glow transition duration-200">
           <div className="w-9 h-9 rounded-xl bg-navy flex items-center justify-center mb-4">
             <Icon size={18} className="text-white" />
           </div>
@@ -78,7 +78,7 @@ export function ProcesoSection() {
     <section id="proceso" className="py-24 bg-mint">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-16">
-          <span className="text-orange-ink text-sm font-semibold uppercase tracking-wider">Metodología</span>
+          <span className="font-mono text-orange-ink text-sm font-medium">{'// '}Metodología</span>
           <h2 className="font-serif text-4xl text-navy mt-2">¿Cómo trabajamos?</h2>
           <p className="text-navy/70 mt-4 max-w-xl mx-auto">
             Un proceso claro y transparente de principio a fin.

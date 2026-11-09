@@ -68,7 +68,7 @@ export function IntroSkeleton() {
         </div>
       </div>
 
-      <p className="absolute bottom-10 inset-x-0 text-center text-sm text-navy/70 tracking-wide">
+      <p className="absolute bottom-10 inset-x-0 text-center font-mono text-sm text-navy/70">
         Diseñando tu sistema…
       </p>
     </motion.div>

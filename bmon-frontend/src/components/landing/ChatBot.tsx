@@ -109,7 +109,7 @@ export function ChatBot() {
         <div className="w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-cream2 flex flex-col overflow-hidden"
           style={{ height: '480px' }}>
           {/* Header */}
-          <div className="bg-navy px-4 py-3 flex items-center gap-3 flex-shrink-0">
+          <div className="bg-night px-4 py-3 flex items-center gap-3 flex-shrink-0">
             <div className="w-8 h-8 rounded-full bg-orange flex items-center justify-center flex-shrink-0">
               <Bot size={16} className="text-white" />
             </div>

@@ -49,11 +49,11 @@ export function Navbar() {
       {/* Fondo: sólido arriba; al bajar, compacto (70 → 60 px con scaleY) y con blur */}
       <div
         aria-hidden
-        className={`absolute inset-0 bg-navy transition-opacity duration-300 ${scrolled ? 'opacity-0' : 'opacity-100'}`}
+        className={`absolute inset-0 bg-night transition-opacity duration-300 ${scrolled ? 'opacity-0' : 'opacity-100'}`}
       />
       <div
         aria-hidden
-        className={`absolute inset-0 origin-top bg-navy/80 backdrop-blur-md shadow-lg shadow-black/10 transition duration-300 ${
+        className={`absolute inset-0 origin-top bg-night/80 backdrop-blur-md border-b border-tech/15 shadow-lg shadow-black/10 transition duration-300 ${
           scrolled ? 'opacity-100 scale-y-[0.857]' : 'opacity-0'
         }`}
       />
@@ -100,7 +100,7 @@ export function Navbar() {
               href="#contacto"
               aria-current={activeSection === 'contacto' ? 'true' : undefined}
               className={`ml-2 inline-flex items-center min-h-[44px] px-5 bg-orange-ink hover:bg-orange-ink2 text-white text-sm font-semibold rounded-lg transition-colors ${
-                activeSection === 'contacto' ? 'ring-2 ring-white/70 ring-offset-2 ring-offset-navy' : ''
+                activeSection === 'contacto' ? 'ring-2 ring-white/70 ring-offset-2 ring-offset-night' : ''
               }`}
             >
               Contacto
@@ -135,7 +135,7 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-[70px] left-0 right-0 bg-navy2 flex flex-col lg:hidden shadow-lg"
+              className="absolute top-[70px] left-0 right-0 bg-night2 flex flex-col lg:hidden shadow-lg"
             >
               {[...links, { label: 'Contacto', id: 'contacto' }].map(({ label, id }) => (
                 <a

@@ -36,17 +36,10 @@ export function ContactoSection() {
   };
 
   return (
-    <section id="contacto" className="py-24 bg-navy relative overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}
-      />
+    <section id="contacto" className="py-24 bg-night bg-tech-grid bg-grid relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-16">
-          <span className="text-orange text-sm font-semibold uppercase tracking-wider">Conversemos</span>
+          <span className="font-mono text-orange text-sm font-medium">{'// '}Conversemos</span>
           <h2 className="font-serif text-4xl text-white mt-2">¿Tienes un proyecto en mente?</h2>
           <p className="text-white/70 mt-4 max-w-xl mx-auto">
             Cuéntanos qué necesitas y te respondemos pronto.
@@ -56,7 +49,7 @@ export function ContactoSection() {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Formulario */}
           <Reveal>
-            <form onSubmit={handleSubmit} className="bg-navy2 rounded-2xl p-6 sm:p-8 border border-white/10 space-y-5">
+            <form onSubmit={handleSubmit} className="bg-night2 rounded-2xl p-6 sm:p-8 border border-tech/20 space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
                   <label htmlFor="contacto-nombre" className="text-white/70 text-xs font-medium">Nombre</label>

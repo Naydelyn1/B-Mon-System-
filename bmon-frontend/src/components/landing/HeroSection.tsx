@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform, type Variants } from 'motion/react';
 import { useIntroDone } from './IntroGate';
+import { TerminalLine } from './TerminalLine';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -31,7 +32,7 @@ const datos = [
 // Datos ficticios: el mockup no muestra información real de ningún cliente
 const demoStats = [
   { label: 'Ingresos', value: 'S/ 8,450', color: 'text-green-400' },
-  { label: 'Clientes', value: '24', color: 'text-blue-400' },
+  { label: 'Clientes', value: '24', color: 'text-tech' },
   { label: 'Pagos', value: '3 pend.', color: 'text-orange' },
 ];
 
@@ -53,14 +54,11 @@ export function HeroSection() {
     <section
       ref={ref}
       id="hero"
-      className="min-h-screen bg-navy flex items-center pt-[70px] relative overflow-hidden"
-      style={{
-        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
-        backgroundSize: '28px 28px',
-      }}
+      className="min-h-screen bg-night bg-tech-grid bg-grid flex items-center pt-[70px] relative overflow-hidden"
     >
-      {/* Glow accent */}
+      {/* Glow accents */}
       <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-orange/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-tech/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full grid md:grid-cols-2 gap-12 items-center py-20">
         {/* Text */}
@@ -71,6 +69,9 @@ export function HeroSection() {
           >
             Software a medida
           </motion.span>
+          <motion.div variants={item}>
+            <TerminalLine text="desplegando tu sistema…" start={introDone} />
+          </motion.div>
           <motion.h1 variants={item} className="font-serif text-4xl sm:text-5xl md:text-6xl text-white leading-tight mb-6">
             Soluciones digitales que{' '}
             <span className="text-orange">impulsan</span> tu negocio
@@ -96,7 +97,7 @@ export function HeroSection() {
           <motion.div variants={item} className="flex flex-wrap items-center gap-x-8 gap-y-4 mt-10 pt-10 border-t border-white/10">
             {datos.map(([valor, label]) => (
               <div key={label}>
-                <p className="text-white font-bold text-xl">{valor}</p>
+                <p className="font-mono text-white font-semibold text-lg">{valor}</p>
                 <p className="text-white/60 text-xs">{label}</p>
               </div>
             ))}
@@ -109,11 +110,15 @@ export function HeroSection() {
             <motion.div
               animate={introDone ? { y: [0, -8, 0] } : undefined}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="bg-navy2 rounded-2xl shadow-2xl border border-white/10 overflow-hidden"
+              className="bg-night2 rounded-2xl shadow-2xl shadow-tech/10 border border-tech/25 overflow-hidden"
             >
               {/* Header */}
-              <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between">
+              <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between gap-3">
                 <span className="text-white text-sm font-semibold">Montufar Sys Dashboard</span>
+                <span className="ml-auto flex items-center gap-1.5 font-mono text-[11px] text-tech">
+                  <span className="w-1.5 h-1.5 rounded-full bg-tech shadow-[0_0_8px_#22d3ee]" />
+                  en línea
+                </span>
                 <div className="flex gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
@@ -124,7 +129,7 @@ export function HeroSection() {
               <div className="grid grid-cols-3 gap-3 p-5">
                 {demoStats.map((s) => (
                   <div key={s.label} className="bg-white/5 rounded-xl p-3">
-                    <p className={`font-bold text-base ${s.color}`}>{s.value}</p>
+                    <p className={`font-mono font-semibold text-base ${s.color}`}>{s.value}</p>
                     <p className="text-white/60 text-xs mt-0.5">{s.label}</p>
                   </div>
                 ))}

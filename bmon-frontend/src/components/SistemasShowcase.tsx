@@ -97,7 +97,7 @@ function SysVentaMock() {
   ];
   return (
     <div className="h-full flex">
-      <div className="w-12 bg-navy flex flex-col items-center gap-4 py-4 text-white/70">
+      <div className="w-12 bg-night flex flex-col items-center gap-4 py-4 text-white/70">
         <ShoppingCart size={16} className="text-orange" />
         <Boxes size={16} />
         <Receipt size={16} />
@@ -304,7 +304,7 @@ export function SistemasShowcase() {
     <section id="sistemas" className="py-24 bg-cream">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-14">
-          <span className="text-orange-ink text-sm font-semibold uppercase tracking-wider">Catálogo</span>
+          <span className="font-mono text-orange-ink text-sm font-medium">{'// '}Catálogo</span>
           <h2 className="font-serif text-4xl text-navy mt-2">Nuestros sistemas</h2>
           <p className="text-navy/70 mt-4 max-w-xl mx-auto">
             Sistemas propios listos para adaptarse a tu negocio, o uno nuevo hecho desde cero para ti.
@@ -343,7 +343,7 @@ export function SistemasShowcase() {
                     className={`relative overflow-hidden text-left flex items-center gap-4 rounded-2xl px-5 py-4 min-h-[72px] border transition duration-200 ${
                       selected
                         ? 'bg-white border-orange/40 shadow-lg'
-                        : 'bg-white/60 border-cream2 hover:bg-white hover:-translate-y-1 hover:shadow-md'
+                        : 'bg-white/60 border-cream2 hover:bg-white hover:-translate-y-1 hover:shadow-glow'
                     }`}
                   >
                     <span
@@ -380,8 +380,8 @@ export function SistemasShowcase() {
                   <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
                   <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
-                  <span className="ml-3 flex-1 max-w-[240px] truncate rounded-md bg-white border border-cream2 px-3 py-1 text-[11px] text-navy/60">
-                    {sistema.nombre} · demo
+                  <span className="ml-3 flex-1 max-w-[240px] truncate rounded-md bg-white border border-cream2 px-3 py-1 font-mono text-[11px] text-navy/60">
+                    {sistema.nombre.toLowerCase().replace(/ /g, "-")} · demo
                   </span>
                 </div>
                 <div className="h-[300px] sm:h-[320px] relative" aria-hidden>

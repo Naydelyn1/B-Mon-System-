@@ -29,7 +29,7 @@ export function NosotrosSection() {
     <section id="nosotros" className="py-24 bg-cream">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-16">
-          <span className="text-orange-ink text-sm font-semibold uppercase tracking-wider">Quiénes somos</span>
+          <span className="font-mono text-orange-ink text-sm font-medium">{'// '}Quiénes somos</span>
           <h2 className="font-serif text-4xl text-navy mt-2">El equipo detrás de Montufar Systems</h2>
         </Reveal>
 
@@ -82,7 +82,7 @@ export function NosotrosSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {valores.map(({ icon: Icon, title, desc }, i) => (
               <Reveal key={title} delay={i * 0.08} className="h-full">
-                <div className="h-full bg-white rounded-2xl p-6 shadow-sm border border-cream2 hover:-translate-y-1 hover:shadow-lg transition duration-200">
+                <div className="h-full bg-white rounded-2xl p-6 shadow-sm border border-cream2 hover:-translate-y-1 hover:shadow-glow transition duration-200">
                   <div className="w-10 h-10 rounded-xl bg-orange/10 flex items-center justify-center mb-4">
                     <Icon size={20} className="text-orange" />
                   </div>
