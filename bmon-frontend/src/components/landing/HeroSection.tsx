@@ -67,7 +67,7 @@ export function HeroSection() {
         <motion.div variants={container} initial="hidden" animate={state}>
           <motion.span
             variants={item}
-            className="inline-block px-3 py-1 bg-orange/20 text-orange text-xs font-semibold rounded-full mb-6 tracking-wider uppercase"
+            className="inline-block px-3 py-1 border border-orange/40 text-orange text-xs font-semibold rounded-full mb-6 tracking-wider uppercase"
           >
             Software a medida
           </motion.span>

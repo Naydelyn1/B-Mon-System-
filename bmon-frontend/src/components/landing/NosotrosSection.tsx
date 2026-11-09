@@ -29,7 +29,7 @@ export function NosotrosSection() {
     <section id="nosotros" className="py-24 bg-cream">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-16">
-          <span className="text-orange2 text-sm font-semibold uppercase tracking-wider">Quiénes somos</span>
+          <span className="text-orange-ink text-sm font-semibold uppercase tracking-wider">Quiénes somos</span>
           <h2 className="font-serif text-4xl text-navy mt-2">El equipo detrás de Montufar Systems</h2>
         </Reveal>
 

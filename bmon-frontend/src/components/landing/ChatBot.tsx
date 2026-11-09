@@ -156,7 +156,7 @@ export function ChatBot() {
                   <button
                     key={faq.question}
                     onClick={() => handleFaq(faq)}
-                    className="text-left text-xs px-3 py-2 rounded-xl border border-orange/30 text-orange hover:bg-orange hover:text-white transition-colors bg-white shadow-sm"
+                    className="text-left text-xs px-3 py-2 rounded-xl border border-orange/30 text-orange-ink hover:bg-orange hover:text-white transition-colors bg-white shadow-sm"
                   >
                     {faq.question}
                   </button>

@@ -78,7 +78,7 @@ export function ProcesoSection() {
     <section id="proceso" className="py-24 bg-mint">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-16">
-          <span className="text-orange2 text-sm font-semibold uppercase tracking-wider">Metodología</span>
+          <span className="text-orange-ink text-sm font-semibold uppercase tracking-wider">Metodología</span>
           <h2 className="font-serif text-4xl text-navy mt-2">¿Cómo trabajamos?</h2>
           <p className="text-navy/70 mt-4 max-w-xl mx-auto">
             Un proceso claro y transparente de principio a fin.

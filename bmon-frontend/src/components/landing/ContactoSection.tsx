@@ -105,7 +105,7 @@ export function ContactoSection() {
                 </div>
               </div>
             ))}
-            <div className="mt-4 p-6 bg-white/5 rounded-2xl border border-white/10">
+            <div className="mt-4 p-6 rounded-2xl border border-white/10">
               <p className="text-white/60 text-sm leading-relaxed">
                 Leemos todos los mensajes y{' '}
                 <span className="text-orange font-semibold">te respondemos pronto</span>.

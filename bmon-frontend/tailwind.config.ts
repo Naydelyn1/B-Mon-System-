@@ -15,6 +15,8 @@ const config: Config = {
         navy2: "#242c45",
         orange: "#e8622a",
         orange2: "#d04e18",
+        // Naranja para texto sobre fondos claros (contraste AA >= 4.5:1)
+        "orange-ink": "#b4441a",
         cream: "#fdf6ee",
         cream2: "#f5ead8",
         mint: "#e8f5f0",

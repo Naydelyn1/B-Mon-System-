@@ -55,7 +55,7 @@ export function ProductosSection() {
     <section id="planes" className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-14">
-          <span className="text-orange2 text-sm font-semibold uppercase tracking-wider">Planes</span>
+          <span className="text-orange-ink text-sm font-semibold uppercase tracking-wider">Planes</span>
           <h2 className="font-serif text-4xl text-navy mt-2">Elige tu plan</h2>
           <p className="text-navy/70 mt-4 max-w-md mx-auto text-sm leading-relaxed">
             Sin importar el tamaño de tu empresa, tenemos un plan que se adapta a ti.

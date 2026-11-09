@@ -183,7 +183,7 @@ function GymFlowMock() {
   const socios = [
     { nombre: 'Socio Demo 01', plan: 'Mensual', estado: 'Activo', color: 'text-green-700 bg-green-50' },
     { nombre: 'Socio Demo 02', plan: 'Trimestral', estado: 'Vence pronto', color: 'text-amber-700 bg-amber-50' },
-    { nombre: 'Socio Demo 03', plan: 'Mensual', estado: 'Pago pendiente', color: 'text-orange2 bg-orange/10' },
+    { nombre: 'Socio Demo 03', plan: 'Mensual', estado: 'Pago pendiente', color: 'text-orange-ink bg-orange/10' },
   ];
   const asistencia = [0.5, 0.75, 0.6, 0.9, 0.7, 1, 0.4];
   return (
@@ -304,7 +304,7 @@ export function SistemasShowcase() {
     <section id="sistemas" className="py-24 bg-cream">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <Reveal className="text-center mb-14">
-          <span className="text-orange2 text-sm font-semibold uppercase tracking-wider">Catálogo</span>
+          <span className="text-orange-ink text-sm font-semibold uppercase tracking-wider">Catálogo</span>
           <h2 className="font-serif text-4xl text-navy mt-2">Nuestros sistemas</h2>
           <p className="text-navy/70 mt-4 max-w-xl mx-auto">
             Sistemas propios listos para adaptarse a tu negocio, o uno nuevo hecho desde cero para ti.
