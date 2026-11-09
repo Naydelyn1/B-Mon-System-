@@ -16,7 +16,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Modal, ConfirmModal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
-import api from '@/lib/axios';
+import api, { apiErrorMessage } from '@/lib/axios';
 
 interface Cliente { id: string; nombre: string; }
 interface Contrato {
@@ -185,9 +185,8 @@ export default function PagosPage() {
       qc.invalidateQueries({ queryKey: ['pagos'] });
       setDeleteTarget(null);
     },
-    onError: (err: any) => {
-      const msg = err?.response?.data?.message;
-      toast.error(typeof msg === 'string' ? msg : 'Error al eliminar el pago');
+    onError: (err: unknown) => {
+      toast.error(apiErrorMessage(err, 'Error al eliminar el pago'));
       setDeleteTarget(null);
     },
   });
@@ -214,7 +213,7 @@ export default function PagosPage() {
     }
 
     const filteredGroups: Array<{ contratoId: string; pagos: Pago[] }> = [];
-    for (const [contratoId, gPagos] of groupMap) {
+    for (const [contratoId, gPagos] of Array.from(groupMap)) {
       if (gPagos.some(matchesPago)) {
         filteredGroups.push({ contratoId, pagos: gPagos });
       }

@@ -12,7 +12,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Modal, ConfirmModal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
-import api from '@/lib/axios';
+import api, { apiErrorMessage } from '@/lib/axios';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL!.replace('/api', '');
 
@@ -150,9 +150,8 @@ export default function ProductosPage() {
       qc.invalidateQueries({ queryKey: ['productos'] });
       setDeleteTarget(null);
     },
-    onError: (err: any) => {
-      const msg = err?.response?.data?.message ?? 'Error al eliminar el producto';
-      toast.error(msg);
+    onError: (err: unknown) => {
+      toast.error(apiErrorMessage(err, 'Error al eliminar el producto'));
     },
   });
 

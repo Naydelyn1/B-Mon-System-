@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { isAxiosError } from 'axios';
 import Cookies from 'js-cookie';
 
 const api = axios.create({
@@ -23,5 +23,11 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+/** Mensaje de error que devuelve la API, o el texto por defecto. */
+export function apiErrorMessage(err: unknown, fallback: string): string {
+  const msg = isAxiosError<{ message?: unknown }>(err) ? err.response?.data?.message : undefined;
+  return typeof msg === 'string' ? msg : fallback;
+}
 
 export default api;

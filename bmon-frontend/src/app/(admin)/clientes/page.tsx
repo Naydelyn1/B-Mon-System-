@@ -12,7 +12,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Modal, ConfirmModal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
-import api from '@/lib/axios';
+import api, { apiErrorMessage } from '@/lib/axios';
 
 interface Pago { id: string; monto: number; concepto: string; estado: string; fecha: string | null; }
 interface Cliente {
@@ -111,9 +111,8 @@ export default function ClientesPage() {
       qc.invalidateQueries({ queryKey: ['clientes'] });
       setModalOpen(false);
     },
-    onError: (err: any) => {
-      const msg = err?.response?.data?.message ?? 'Error al guardar el cliente';
-      toast.error(typeof msg === 'string' ? msg : 'Error al guardar el cliente');
+    onError: (err: unknown) => {
+      toast.error(apiErrorMessage(err, 'Error al guardar el cliente'));
     },
   });
 
@@ -124,9 +123,8 @@ export default function ClientesPage() {
       qc.invalidateQueries({ queryKey: ['clientes'] });
       setDeleteTarget(null);
     },
-    onError: (err: any) => {
-      const msg = err?.response?.data?.message ?? 'Error al eliminar el cliente';
-      toast.error(typeof msg === 'string' ? msg : 'Error al eliminar el cliente');
+    onError: (err: unknown) => {
+      toast.error(apiErrorMessage(err, 'Error al eliminar el cliente'));
     },
   });
 
@@ -135,9 +133,8 @@ export default function ClientesPage() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['clientes'] });
     },
-    onError: (err: any) => {
-      const msg = err?.response?.data?.message ?? 'No se puede cambiar el estado';
-      toast.error(typeof msg === 'string' ? msg : 'No se puede cambiar el estado');
+    onError: (err: unknown) => {
+      toast.error(apiErrorMessage(err, 'No se puede cambiar el estado'));
     },
   });
 
