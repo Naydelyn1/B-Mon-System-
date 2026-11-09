@@ -1,4 +1,5 @@
 import { Navbar } from '@/components/layout/Navbar';
+import { IntroGate, introScript } from '@/components/landing/IntroGate';
 import { HeroSection } from '@/components/landing/HeroSection';
 import { NosotrosSection } from '@/components/landing/NosotrosSection';
 import { ServiciosSection } from '@/components/landing/ServiciosSection';
@@ -11,17 +12,22 @@ import { ChatBot } from '@/components/landing/ChatBot';
 
 export default function LandingPage() {
   return (
-    <main className="bg-cream">
-      <Navbar />
-      <HeroSection />
-      <NosotrosSection />
-      <ServiciosSection />
-      <ProductosSection />
-      <ProcesoSection />
-      <TecnologiasSection />
-      <ContactoSection />
-      <Footer />
-      <ChatBot />
-    </main>
+    <>
+      <script dangerouslySetInnerHTML={{ __html: introScript }} />
+      <IntroGate>
+        <main className="bg-cream overflow-x-clip">
+          <Navbar />
+          <HeroSection />
+          <NosotrosSection />
+          <ServiciosSection />
+          <ProductosSection />
+          <ProcesoSection />
+          <TecnologiasSection />
+          <ContactoSection />
+          <Footer />
+          <ChatBot />
+        </main>
+      </IntroGate>
+    </>
   );
 }
