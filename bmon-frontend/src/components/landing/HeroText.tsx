@@ -77,34 +77,20 @@ export function Descifrar({ text, active, delay }: { text: string; active: boole
   return <>{useScramble(text, active, { delay })}</>;
 }
 
-export const PALABRAS = ['impulsan', 'automatizan', 'ordenan', 'hacen crecer'];
+const subrayado: Variants = {
+  hidden: { scaleX: 0 },
+  show: { scaleX: 1, transition: { duration: 0.8, ease } },
+};
 
-/** Palabra destacada que rota cada pocos segundos, con efecto descifrar y subrayado. */
-export function PalabraRotativa({ active }: { active: boolean }) {
-  const [i, setI] = useState(0);
-
-  useEffect(() => {
-    if (!active) {
-      setI(0);
-      return;
-    }
-    const id = window.setInterval(() => setI((v) => (v + 1) % PALABRAS.length), 3200);
-    return () => window.clearInterval(id);
-  }, [active]);
-
-  const texto = useScramble(PALABRAS[i], active, { delay: i === 0 ? 900 : 0, duration: 650 });
-
+/** Palabra destacada: entra letra a letra como el título y luego se dibuja su subrayado. */
+export function PalabraDestacada({ text }: { text: string }) {
   return (
-    <motion.span variants={letra} className="relative inline-block whitespace-nowrap text-orange">
-      {texto}
+    <span className="relative inline-block whitespace-nowrap text-orange">
+      <Letras text={text} />
       <motion.span
-        key={i}
-        aria-hidden
+        variants={subrayado}
         className="absolute left-0 right-0 -bottom-1 h-[3px] rounded-full bg-gradient-to-r from-orange via-orange to-tech origin-left"
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.8, delay: i === 0 ? 1 : 0.15, ease }}
       />
-    </motion.span>
+    </span>
   );
 }

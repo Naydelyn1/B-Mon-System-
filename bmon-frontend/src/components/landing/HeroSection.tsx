@@ -5,7 +5,7 @@ import { motion, useReducedMotion, useScroll, useTransform, type Variants } from
 import { useIntroDone } from './IntroGate';
 import { TerminalLine } from './TerminalLine';
 import { HeroLaptop } from './HeroLaptop';
-import { Descifrar, Letras, PalabraRotativa } from './HeroText';
+import { Descifrar, Letras, PalabraDestacada } from './HeroText';
 import { ArrowRight } from 'lucide-react';
 
 const DESCRIPCION =
@@ -85,7 +85,7 @@ export function HeroSection() {
           <motion.div variants={item}>
             <TerminalLine text="desplegando tu sistema…" start={introDone} />
           </motion.div>
-          {/* Título letra a letra; la palabra naranja rota con efecto "descifrar" */}
+          {/* Título letra a letra; al final se dibuja el subrayado de la palabra naranja */}
           <motion.h1
             variants={titulo}
             className="font-serif text-4xl sm:text-5xl xl:text-6xl text-white leading-[1.12] mb-6"
@@ -95,7 +95,7 @@ export function HeroSection() {
               <Letras text="Soluciones digitales" />
             </span>
             <span aria-hidden className="block">
-              <Letras text="que" /> <PalabraRotativa active={animar} />
+              <Letras text="que" /> <PalabraDestacada text="impulsan" />
             </span>
             <span aria-hidden className="block">
               <Letras text="tu negocio" />
